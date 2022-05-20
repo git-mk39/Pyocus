@@ -1,0 +1,154 @@
+import os
+import pygame
+
+pygame.font.init()
+pygame.mixer.init()
+
+
+
+FPS = 60
+
+
+
+WINDOW_WIDTH = 960
+WINDOW_HEIGHT = 540
+FULLSCREEN_WIDTH = 1920
+FULLSCREEN_HEIGHT = 1080
+
+WINDOW_SIZE = (WINDOW_WIDTH, WINDOW_HEIGHT)
+FULLSCREEN_SIZE = (FULLSCREEN_WIDTH, FULLSCREEN_HEIGHT)
+
+SCREEN = pygame.display.set_mode(WINDOW_SIZE)
+DISPLAY_WIDTH = WINDOW_WIDTH
+DISPLAY_HEIGHT = WINDOW_HEIGHT
+
+
+
+GAME_ICON = pygame.image.load(os.path.join('Assets', 'pyocus-logo.png'))
+BACKGROUND = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'background.jpg')), WINDOW_SIZE)
+BACKGROUND_MUSIC = pygame.mixer.Sound(os.path.join('Assets', 'background-music.mp3'))
+BACKGROUND_MUSIC_CHANNEL = pygame.mixer.Channel(1)
+BACKGROUND_INGAME = BACKGROUND
+
+
+
+
+BLACK = (0, 0, 0)
+DARK_RED = (147, 25, 16)
+DARK_BLUE = (12, 79, 103)
+DARKER_BLUE = (28, 176, 230)
+WHITE = (255, 255, 255)
+GRAY = (20, 20, 20)
+YELLOW = (255, 199, 0)
+
+
+
+BORDER_THICKNESS = 2
+BORDER_INGAME_THICKNESS = BORDER_THICKNESS
+
+
+
+GRAVITY = 1
+GRAVITY_INGAME = GRAVITY
+
+
+
+PLAYER_INIT_POS_X = DISPLAY_WIDTH // 50
+PLAYER_INIT_POS_Y = DISPLAY_HEIGHT - DISPLAY_HEIGHT // 10
+PLAYER_WIDTH = 10
+PLAYER_HEIGHT = 10
+PLAYER_SPRITE = pygame.image.load(os.path.join('Assets', 'player-sprite.png'))
+PLAYER_HEART_SPRITE = pygame.image.load(os.path.join('Assets', 'player-heart-sprite.png'))
+PLAYER_HEART_SPRITE_X = 900
+PLAYER_HEART_SPRITE_Y = 15
+PLAYER_MOVE_VEL = 4
+PLAYER_FALL_VEL = 0
+PLAYER_DOWNWARD_SMASH_VEL = 30
+PLAYER_MAX_FALL_VEL = 10
+PLAYER_JUMP_HEIGHT = 14
+PLAYER_MIDAIR_JUMP_HEIGHT = 10
+PLAYER_MIDAIR_JUMP_REMAINING = 1
+PLAYER_DASH_DURATION = 10
+PLAYER_DASH_INTERVAL = 15
+PLAYER_LIVES = 3
+
+
+
+SNAKE_MOVE_VEL = 10
+SNAKE_MOVE_INTERVAL = 1
+SNAKE_BODY_BLOCK_WIDTH = 10
+SNAKE_BODY_BLOCK_HEIGHT= 10
+SNAKE_INTRO_BODY_LENGTH = 50
+SNAKE_BODY_LENGTH_MIN = 10
+SNAKE_BODY_LENGTH_MAX = 16
+ENEMY_INIT_NUMBER = 3
+
+ENEMY_DEAD_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'dead-sound.mp3'))
+
+SNAKE_INGAME_BODY_BLOCK_WIDTH = SNAKE_BODY_BLOCK_WIDTH
+SNAKE_INGAME_BODY_BLOCK_HEIGHT = SNAKE_BODY_BLOCK_HEIGHT
+SNAKE_INGAME_MOVE_VEL = SNAKE_MOVE_VEL
+
+
+
+BULLET_FIRE_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'bullet-fire-sound.mp3'))
+BULLET_HIT_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'bullet-hit-platform-sound.mp3'))
+BULLET_HIT_ENEMY = pygame.mixer.Sound(os.path.join('Assets', 'bullet-hit-enemy-sound.mp3'))
+BULLET_WIDTH = 15
+BULLET_HEIGHT = 2
+BULLET_VEL = 12
+
+BULLET_INGAME_WIDTH = BULLET_WIDTH
+BULLET_INGAME_HEIGHT = BULLET_HEIGHT
+BULLET_INGAME_VEL = BULLET_VEL
+
+SHOTGUN_BULLET_NUMBER = 5
+SHOTGUN_BULLET_SPREAD = 50
+SHOTGUN_BULLET_SPREAD_INGAME = SHOTGUN_BULLET_SPREAD
+SHOTGUN_FIRE_INTERVAL = 60
+SHOTGUN_FIRE_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'shotgun-fire-sound.mp3'))
+
+SNIPER_CHARGE = 60
+SNIPER_BULLET_VEL = 20
+SNIPER_BULLET_VEL_INGAME = SNIPER_BULLET_VEL
+SNIPER_CHARGING_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'sniper-charging-sound.mp3'))
+SNIPER_CHARGING_SOUND_IS_PLAYING = False
+SNIPER_FIRE_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'sniper-fire-sound.mp3'))
+
+
+
+CURRENT_STAGE = 1
+SCORE_STEP = 10
+SCORE_KILL_STEP = 100
+SCORE_INGAME = 0
+ENEMY_HIT = 0
+ENEMY_KILLED = 0
+ENEMY_KILLED_TOTAL = 0
+FONT_SIZE = 15
+FONT_SIZE_INGAME = FONT_SIZE
+INGAME_FONT = pygame.font.Font(os.path.join('Assets', 'gomarice-no-continue-font.ttf'), FONT_SIZE_INGAME)
+
+
+
+INTRO_SCREEN_FONT_SIZE = 80
+INTRO_SCREEN_INGAME_FONT_SIZE = INTRO_SCREEN_FONT_SIZE
+INTRO_SCREEN_FONT = pygame.font.Font(os.path.join('Assets', 'comic-sans-font.ttf'), INTRO_SCREEN_INGAME_FONT_SIZE)
+INTRO_PYOCUS_FONT_SIZE = 250
+INTRO_PYOCUS_INGAME_FONT_SIZE = INTRO_PYOCUS_FONT_SIZE
+INTRO_PYOCUS_FONT = pygame.font.Font(os.path.join('Assets', 'gomarice-no-continue-font.ttf'), INTRO_PYOCUS_INGAME_FONT_SIZE)
+
+END_SCREEN_FONT_SIZE = 50
+END_SCREEN_FONT_SIZE_INGAME = END_SCREEN_FONT_SIZE
+END_SCREEN_FONT = pygame.font.Font(os.path.join('Assets', 'gomarice-no-continue-font.ttf'), END_SCREEN_FONT_SIZE_INGAME)
+VICTORY_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'victory-sound.mp3'))
+GAME_OVER_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'game-over-sound.mp3'))
+END_SCREEN_TIME_INTERVAL = 120
+END_SCREEN_TIME_REMAINING = END_SCREEN_TIME_INTERVAL
+GAME_OVER_SCREEN_TIME_INTERVAL = 240
+GAME_OVER_SCREEN_TIME_REMAINING = GAME_OVER_SCREEN_TIME_INTERVAL
+
+
+
+PAUSE_SCREEN_FONT_SIZE = 20
+PAUSE_SCREEN_FONT_SIZE_INGAME = PAUSE_SCREEN_FONT_SIZE
+PAUSE_SCREEN_FONT = pygame.font.Font(os.path.join('Assets', 'gomarice-no-continue-font.ttf'), PAUSE_SCREEN_FONT_SIZE_INGAME)

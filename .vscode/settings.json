@@ -1,0 +1,13 @@
+{
+  "python.formatting.autopep8Args": [
+    "--indent-size=2",
+    "--ignore=E251,E302,E501"
+  ],
+  "python.formatting.provider": "autopep8",
+  "python.linting.banditEnabled": false,
+  "python.linting.enabled": true,
+  "python.linting.pylintArgs": [
+    "--indent-string=''"
+  ],
+  "python.linting.pylintEnabled": true
+}
